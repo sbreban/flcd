@@ -1,0 +1,16 @@
+S q0
+S q1
+S q2
+S q3
+IS a
+IS b
+T q0-b-q0
+T q0-a-q1
+T q1-b-q0
+T q1-a-q2
+T q2-b-q0
+T q2-a-q3
+T q3-a-q3
+T q3-b-q3
+SS q0
+AS q3

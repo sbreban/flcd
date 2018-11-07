@@ -1,0 +1,12 @@
+int _a;
+boolean _abra
+{
+	_a<-0;
+	while (_a<10) {
+		_a<-_a+1;
+	}
+	write(_a);
+	if (_a == 10 && false) {
+		write(_a+1);
+	}
+}

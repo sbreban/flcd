@@ -1,0 +1,97 @@
+abc - compilatoare
+
+Language Specification:
+	Language Definition:
+		Alphabet:
+			a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+      		b. Underline character '_';
+      		c. Decimal digits (0-9);
+
+      	Lexic:
+      		Special symbols, representing:
+	 			- operators + - * : <- < <= != == >= > && || newline
+	 			- separators ( ) [ ] { } ; space
+	 			- reserved words: char int boolean else if while read write
+      		Identifiers
+	   			- a sequence of letters and  digits, with the first character being an underscore; the rule is:
+	     			identifier ::= "_" letter | "_" letter{letter|digit}
+	     			letter ::= "A" | "B" |...| "Z" | "a" | "b" | ... | "z"
+	     			digit ::= "0" | "1" |...| "9"
+      		Constants
+	 			1.integer - rule:
+          			noconst ::= "+"no|-no|no
+          			no ::= digit \ 0 | (digit \ 0){digit}
+	 			2.character
+	     			character ::= 'letter'|'digit'
+        		3.boolean = "true" | "false"
+
+	    Syntax:
+			The words - predefined tokens are specified between " and ":	
+			Sintactical rules:
+        		program ::= decllist ";" cmpdstmt
+				declaration ::= type identifier
+        		type ::= "char" {"[" noconst "]"} | "int" {"[" noconst "]"} | "pair" {"[" noconst "]"} | booltype
+		        booltype ::= "boolean" {"[" noconst "]"}
+		        decllist ::= declaration | declaration ";" decllist
+		        cmpdstmt ::= "{" stmtlist "}"
+		        stmtlist ::= stmt | stmt ";" stmtlist
+		        stmt ::= simplstmt | structstmt
+		        simplstmt ::= assignstmt | iostmt
+		 		assignstmt ::= identifier "<-" expression | identifier "<-" pair
+		 		expression ::= (expression ("+" | "-") term) | term
+		        term ::= (term ("*" | ":") factor) | factor
+		        factor ::= "(" expression ")" | identifier | noconst
+		        iostmt ::= "read" "(" identifier ")" | "write" "(" expression ")"
+		 		structstmt ::= stmt | ifstmt | whilestmt
+		        ifstmt ::= "if" "(" condition ")" stmtlist ["else" stmt]
+		        whilestmt ::= "while" "(" condition ")" stmtlist
+		        condition ::= (expression relation expression) | booltype
+			Lexical rules:
+ 				identifier ::= "_" letter | "_" letter{letter|digit}
+        		letter ::= "A" | "B" |...| "Z" | "a" | "b" | ... | "z"
+        		digit ::= "0" | "1" |...| "9"
+        		relation ::= "<" | "<=" | "==" | "!=" | ">=" | ">"
+
+The tokens are codified according to the following table:
+- identifiers - code 0
+- constants	- code  1
+- reserved words: each word has its own code
+- operators: each operator has its own code
+- separators: each separator has its own code
+
+Codification:
+Token type Code
+identifier	0
+constant	1
+int         2
+boolean     3
+read		4
+write       5
+if          6
+else        7
+while       8
+true        9
+false       10
+char        11
+:           12
+;           13
++			14
+*           15
+(           16
+)           17
+[           18
+]           19
+{           20
+}           21
+-           22
+<           23
+>           24
+=           25
+!           26
+&&          27
+||          28
+<-			29
+==			30
+!=          31
+<=          32
+>=          33

@@ -1,0 +1,24 @@
+S S
+T a
+T b
+T c
+NT S
+NT A
+P S->aA
+P A->cS
+P A->c
+P S->empty
+end
+S S
+T 0
+T 1
+NT S
+NT T
+NT O
+NT I
+P S->OT
+P S->OI
+P T->SI
+P O->0
+P I->1
+end
